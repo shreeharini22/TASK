@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorting Animation - Merge Sort</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+  background-image: url('https://your-new-image-link.com/path-to-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+    .container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .box {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #4caf50;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+    .box.compare {
+      background-color: #ff9800;
+    }
+    .box.sorted {
+      background-color: #2196f3;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sorting Animation - Merge Sort</h1>
+  <input type="text" id="inputNumbers" placeholder="Enter numbers separated by commas" />
+  <button onclick="startSorting()">Start Sorting</button>
+  <div class="container" id="boxContainer"></div>
+
+  <script>
+    function createBoxes(numbers) {
+      const container = document.getElementById('boxContainer');
+      container.innerHTML = '';
+      numbers.forEach((num) => {
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.textContent = num;
+        container.appendChild(box);
+      });
+    }
+
+    async function mergeSortAnimation(numbers, left, right, boxes) {
+      if (left >= right) return;
+      const mid = Math.floor((left + right) / 2);
+      await mergeSortAnimation(numbers, left, mid, boxes);
+      await mergeSortAnimation(numbers, mid + 1, right, boxes);
+      await merge(numbers, left, mid, right, boxes);
+    }
+
+    async function merge(numbers, left, mid, right, boxes) {
+      const leftArr = numbers.slice(left, mid + 1);
+      const rightArr = numbers.slice(mid + 1, right + 1);
+      let i = 0, j = 0, k = left;
+
+      while (i < leftArr.length && j < rightArr.length) {
+        // Highlight the compared boxes
+        boxes[k].classList.add('compare');
+        if (k + 1 < boxes.length) boxes[k + 1].classList.add('compare');
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        if (leftArr[i] <= rightArr[j]) {
+          numbers[k] = leftArr[i];
+          boxes[k].textContent = leftArr[i];
+          i++;
+        } else {
+          numbers[k] = rightArr[j];
+          boxes[k].textContent = rightArr[j];
+          j++;
+        }
+
+        boxes[k].classList.remove('compare');
+        boxes[k].classList.add('sorted');
+        k++;
+      }
+
+      while (i < leftArr.length) {
+        boxes[k].classList.add('compare');
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        numbers[k] = leftArr[i];
+        boxes[k].textContent = leftArr[i];
+        boxes[k].classList.remove('compare');
+        boxes[k].classList.add('sorted');
+        i++;
+        k++;
+      }
+
+      while (j < rightArr.length) {
+        boxes[k].classList.add('compare');
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        numbers[k] = rightArr[j];
+        boxes[k].textContent = rightArr[j];
+        boxes[k].classList.remove('compare');
+        boxes[k].classList.add('sorted');
+        j++;
+        k++;
+      }
+    }
+
+    function startSorting() {
+      const input = document.getElementById('inputNumbers').value;
+      if (!input.trim()) {
+        alert('Please enter some numbers!');
+        return;
+      }
+      const numbers = input.split(',').map(Number);
+      if (numbers.some(isNaN)) {
+        alert('Please enter valid numbers separated by commas.');
+        return;
+      }
+      createBoxes(numbers);
+      const boxes = document.querySelectorAll('.box');
+      mergeSortAnimation(numbers, 0, numbers.length - 1, boxes);
+    }
+  </script>
+</body>
+</html>
