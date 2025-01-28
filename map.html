@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HashMap </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      white-space: pre-wrap;
+      text-align: left;
+      border: 1px solid #ddd;
+      padding: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>HashMap in JavaScript</h1>
+  <div>
+    <input id="keyInput" type="text" placeholder="Enter Key" />
+    <input id="valueInput" type="text" placeholder="Enter Value" />
+    <button onclick="addKeyValue()">Add Key-Value</button>
+  </div>
+  <div>
+    <input id="searchInput" type="text" placeholder="Search Key" />
+    <button onclick="searchKey()">Search</button>
+  </div>
+  <button onclick="displayHashMap()">Display All</button>
+  <div id="output"></div>
+
+  <script>
+    // HashMap implementation using JavaScript Map
+    const hashMap = new Map();
+
+    // Add key-value pair to HashMap
+    function addKeyValue() {
+      const key = document.getElementById('keyInput').value.trim();
+      const value = document.getElementById('valueInput').value.trim();
+
+      if (!key || !value) {
+        alert('Please enter both key and value!');
+        return;
+      }
+
+      hashMap.set(key, value);
+      document.getElementById('keyInput').value = '';
+      document.getElementById('valueInput').value = '';
+      document.getElementById('output').textContent = `Added: { "${key}": "${value}" }`;
+    }
+
+    // Search for a key in the HashMap
+    function searchKey() {
+      const key = document.getElementById('searchInput').value.trim();
+
+      if (!key) {
+        alert('Please enter a key to search!');
+        return;
+      }
+
+      if (hashMap.has(key)) {
+        document.getElementById('output').textContent = `Found: { "${key}": "${hashMap.get(key)}" }`;
+      } else {
+        document.getElementById('output').textContent = `Key "${key}" not found in HashMap.`;
+      }
+
+      document.getElementById('searchInput').value = '';
+    }
+
+    // Display all key-value pairs in the HashMap
+    function displayHashMap() {
+      if (hashMap.size === 0) {
+        document.getElementById('output').textContent = 'HashMap is empty.';
+        return;
+      }
+
+      let output = 'HashMap Contents:\n';
+      hashMap.forEach((value, key) => {
+        output += `{ "${key}": "${value}" }\n`;
+      });
+      document.getElementById('output').textContent = output;
+    }
+  </script>
+</body>
+</html>
