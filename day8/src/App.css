@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(160, 95, 95);
+  background-size: cover;
+  background-position: center;
+  color: rgb(255, 225, 192);
+  text-align: center;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.776);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid rgb(216, 192, 255);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: rgb(192, 254, 255);
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: rgb(212, 192, 255);
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: black;
+  color: rgb(192, 199, 255);
+  border: 1px solid rgb(192, 200, 255);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background-color: black;
+  color: rgb(192, 198, 255);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteBtn {
+  background-color: rgb(192, 200, 255);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: black;
+  color: rgb(192, 213, 255);
+  border: 1px solid rgb(192, 193, 255);
+}
