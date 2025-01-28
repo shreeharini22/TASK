@@ -1,0 +1,43 @@
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  text-align: center;
+  margin-left:100px;
+  background-color: rgb(127, 153, 255);
+}
+
+.container {
+  display: flex;
+  margin-top:5px;
+}
+
+.product-list{
+  width:500px;
+  border: 3px dashed white;
+  border-radius: 8px;
+  padding: 10px;
+  margin:50px;
+}
+.cart{
+  width:300px;
+}
+
+.product-card, .cart-item {
+  margin: 10px 0;
+  padding:2px;
+  background-color:rgb(19, 15, 116);
+  opacity:70%;
+  border-radius:5px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+button:hover {
+  background-color: #0056b3;
+}
