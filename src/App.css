@@ -1,43 +1,83 @@
-.app {
+body {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(160, 95, 145);
+  background-size: cover;
+  background-position: center;
+  color: pink;
   text-align: center;
-  margin-left:100px;
-  background-color: rgb(127, 153, 255);
 }
 
 .container {
-  display: flex;
-  margin-top:5px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.product-list{
-  width:500px;
-  border: 3px dashed white;
-  border-radius: 8px;
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 70%;
   padding: 10px;
-  margin:50px;
-}
-.cart{
-  width:300px;
-}
-
-.product-card, .cart-item {
-  margin: 10px 0;
-  padding:2px;
-  background-color:rgb(19, 15, 116);
-  opacity:70%;
-  border-radius:5px;
+  border: 1px solid pink;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: pink;
 }
 
 button {
-  background-color: #007bff;
-  color: white;
+  padding: 10px 15px;
   border: none;
+  background-color: pink;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: black;
+  color: pink;
+  border: 1px solid pink;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background-color: black;
+  color: pink;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteBtn {
+  background-color: pink;
+  color: black;
+  border: none;
+  border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  border-radius: 3px;
 }
-button:hover {
-  background-color: #0056b3;
+
+.deleteBtn:hover {
+  background-color: black;
+  color: pink;
+  border: 1px solid pink;
 }
