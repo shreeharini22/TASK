@@ -1,61 +1,81 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './App.css';
+import React, { useState, useRef } from "react";
+import "./App.css";
 
 const App = () => {
-  const [city, setCity] = useState('');
-  const [weather, setWeather] = useState(null);
-  const [error, setError] = useState(null);
+  const [time, setTime] = useState(10); // Timer starts at 10 seconds
+  const [timerActive, setTimerActive] = useState(false);
+  const inputRef = useRef(null); // Reference for focusing the input box
+  const timerRef = useRef(null); // Reference for timer ID
 
-  const handleCityChange = (e) => {
-    setCity(e.target.value);
+  // Start the countdown
+  const startTimer = () => {
+    if (timerActive) return;
+    setTimerActive(true);
+    timerRef.current = setInterval(() => {
+      setTime((prevTime) => {
+        if (prevTime === 1) {
+          clearInterval(timerRef.current);
+          setTimerActive(false);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
   };
 
-  const fetchWeather = async (e) => {
-    e.preventDefault();
-    if (!city) {
-      setError("Please enter a city.");
-      return;
-    }
+  // Stop the timer
+  const stopTimer = () => {
+    clearInterval(timerRef.current);
+    setTimerActive(false);
+  };
 
-    const apiKey = '07461bec94f3e2dc77b1cce7f14dc368'; // Replace with your own API key
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  // Reset the timer
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    setTime(10);
+    setTimerActive(false);
+  };
 
-    try {
-      const response = await axios.get(url);
-      setWeather(response.data);
-      setError(null); // Clear any previous errors
-    } catch (err) {
-      setError("City not found."); // Handle invalid city
-      setWeather(null);
-    }
+  // Focus the input box
+  const focusInput = () => {
+    inputRef.current.focus();
   };
 
   return (
-    <div className="weather-container">
-      <h1>Weather App</h1>
-      <form onSubmit={fetchWeather} className="weather-form">
-        <input
-          type="text"
-          value={city}
-          onChange={handleCityChange}
-          placeholder="Enter city name"
-          className="city-input"
-        />
-        <button type="submit" className="search-button">Search</button>
-      </form>
-
-      {error && <div className="error">{error}</div>}
-
-      {weather && (
-        <div className="weather-info">
-          <h2>{weather.name}, {weather.sys.country}</h2>
-          <p className="temperature">{weather.main.temp}°C</p>
-          <p className="description">{weather.weather[0].description}</p>
-          <p>Humidity: {weather.main.humidity}%</p>
-          <p>Wind Speed: {weather.wind.speed} m/s</p>
+    <div className="app">
+      <div className="content">
+        {/* Input Box and Focus Button */}
+        <div className="input-section">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Type something here..."
+            className="input-box"
+            autoFocus
+          />
+          <button className="btn focus-btn" onClick={focusInput}>
+            Focus Box
+          </button>
         </div>
-      )}
+
+        {/* Timer Display and Buttons */}
+        <div className="timer-section">
+          <div className={`timer ${time === 0 ? "time-up" : ""}`}>
+            {time === 0 ? "Time's Up!" : time}
+          </div>
+          <div className="button-group">
+            <button className="btn start-btn" onClick={startTimer} disabled={timerActive}>
+              Start Timer
+            </button>
+            <button className="btn stop-btn" onClick={stopTimer}>
+              Stop Timer
+            </button>
+            <button className="btn reset-btn" onClick={resetTimer}>
+              Reset Timer
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

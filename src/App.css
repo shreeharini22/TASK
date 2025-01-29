@@ -1,66 +1,127 @@
+/* General Styling */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(9, 10, 84);
-  color: #fff;
 }
 
-.weather-app {
-  text-align: center;
-  background: rgba(246, 199, 236, 0.603);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.search-container {
+.app {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  width: 100%;
 }
 
-input[type="text"] {
-  padding: 10px;
-  border: none;
-  border-radius: 5px 0 0 5px;
+.content {
+  text-align: center;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Input Section */
+.input-section {
+  margin-bottom: 30px;
+}
+
+.input-box {
+  padding: 12px 15px;
+  font-size: 18px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
   outline: none;
-  width: 200px;
+  width: 70%;
+  transition: 0.3s;
 }
 
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  background: #633056;
+.input-box:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 5px #2ecc71;
+}
+
+.focus-btn {
+  margin-top: 10px;
+  background: #e67e22;
   color: white;
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
-button:hover {
-  background: #ef6fb7;
+.focus-btn:hover {
+  background: #d35400;
 }
 
-.weather-result {
+/* Timer Section */
+.timer-section {
   margin-top: 20px;
 }
 
-.weather-result h2 {
-  font-size: 24px;
+.timer {
+  font-size: 48px;
   font-weight: bold;
+  color: #34495e;
+  margin-bottom: 20px;
+  transition: 0.3s;
 }
 
-.weather-result p {
-  margin: 5px 0;
-  font-size: 18px;
+.time-up {
+  color: #e74c3c;
+  animation: blink 1s infinite;
 }
 
-.error {
-  color: #eee6e6;
+/* Blinking animation for "Time's Up!" */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Buttons */
+.button-group .btn {
+  margin: 5px;
   font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.start-btn {
+  background: #2ecc71;
+}
+
+.start-btn:hover {
+  background: #27ae60;
+}
+
+.stop-btn {
+  background: #e74c3c;
+}
+
+.stop-btn:hover {
+  background: #c0392b;
+}
+
+.reset-btn {
+  background: #3498db;
+}
+
+.reset-btn:hover {
+  background: #2980b9;
 }
